@@ -1,0 +1,53 @@
+<p>Assigned to</p>
+<!--<input type="input" [(ngModel)]="assignedTo" />-->
+
+<select [(ngModel)]="assignedTo" >
+    <option value="">-- choose name --</option>
+    <option *ngFor="let person of people">
+        {{ person.name }}
+    </option>
+  </select>
+<p>Description</p><input type="input" [(ngModel)]="description" />
+<br><br>
+<button type="button" (click)="addTodo()">add Todo</button>
+<br>
+<br>
+<input type="checkbox" name="vehicle1" [(ngModel)]="onlyUndone">only Undone Todos<br>
+<p>Your Name</p><input type="input" [(ngModel)]="yourName" /><br><br>
+<input type="checkbox" name="vehicle1" [(ngModel)]="onlyYours">only Your Todos<br>
+<br>
+
+<button type="button" (click)="getPeople()">get People</button>
+<ul>
+  <li *ngFor="let person of people">
+    {{ person.name }}
+  </li>
+</ul>
+<button type="button" (click)="loadTodos()">get Todos</button>
+<ul>
+  <li *ngFor="let todo of todos">
+    <div *ngIf="((todo.done!==true)||( onlyUndone !==true))&&((onlyYours!==true)||(yourName===todo.assignedTo))">
+      {{ todo.id}}
+
+      <!--<div *ngIf="todo.assignedTo==null">
+        <select ng-options="person.name for person in people">
+        </select>
+      </div>-->
+      {{ todo.assignedTo }}
+      {{ todo.description }}
+      {{ todo.done }}
+    </div>
+  </li>
+</ul>
+<br>
+<p>Todo nr.</p><input type="input" [(ngModel)]="number" /><br><br>
+<button type="button" (click)="deleteItem()">Delete Item</button>
+<br><br>
+<button type="button" (click)="getItem()">Get Item</button><br><br>
+
+<p>done</p><input type="input" [(ngModel)]="done" /><br><br>
+<button type="button" (click)="updateItem()">Update Item</button><br>
+{{ todo.id}}
+{{ todo.assignedTo }}
+{{ todo.description }}
+{{ todo.done }}
